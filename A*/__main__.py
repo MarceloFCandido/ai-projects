@@ -3,18 +3,35 @@ from getopt import getopt
 import numpy as np
 
 
+
+def print_usage():
+    print("A* usage:\n\npython A* -s <souce-station> -d <destiny-station> --heuristics=<heuristics-file> --real_distances=<distances-file>")
+
+
 def parse(opts):
-    objective = ["", ""]
+    objective = [-1, -1]
+    heuristics_file = ""
+    distances_file = ""
 
     for i in range(0, len(opts)):
         if opts[i][0] == "-h":
-            print(
-                "A* usage:\npython A* -s <souce-station> -d <destiny-station> --heuristics=<heuristics-file> --real_distances=<distances-file>")
+            print_usage()
             exit()
         elif opts[i][0] == "-s":
-            objective[0] = opts[i][0]
+            objective[0] = int(opts[i][1][1:]) - 1
         elif opts[i][0] == "-d":
-            objective[1] = opts[i][0]
+            objective[1] = int(opts[i][1][1:]) - 1
+        elif opts[i][0] == "--heuristics":
+            heuristics_file = opts[i][1]
+        elif opts[i][0] == "--real_distances":
+            distances_file = opts[i][1]
+
+    if not (sum(objective) != -2 and heuristics_file and distances_file):
+        print("Bad usage\n")
+        print_usage()
+        exit()
+
+    return tuple(objective), heuristics_file, distances_file
 
 
 if __name__ == "__main__":
