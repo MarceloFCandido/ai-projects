@@ -2,6 +2,7 @@ import sys
 from getopt import getopt
 import numpy as np
 
+from a_star.a_star import A_Star
 
 
 def print_usage():
@@ -38,3 +39,6 @@ if __name__ == "__main__":
     opts, args = getopt(sys.argv[1:], "hs:d:", [
                         "heuristics=", "real_distances="])
     objective, heuristics_file, distances_file = parse(opts)
+
+    a_star = A_Star(objective, heuristics_file, distances_file)
+    a_star.run()
