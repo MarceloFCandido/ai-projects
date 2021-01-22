@@ -26,6 +26,12 @@ class A_Star(object):
                 return False
         return True
 
+    def verify_loop(self, path, id):
+        for node in path:
+            if node["id"] == id:
+                return True
+        return False
+
     def verify_achieved_objective(self):
         for path in self.paths:
             if path[-1]["id"] == self.objective[1]:
@@ -49,10 +55,29 @@ class A_Star(object):
         return next
 
     def expand_chosen(self, index):
-        id = self.paths[index][-1]["id"]
+        path_to_expand = self.paths[index].copy()
+        self.paths.remove(path_to_expand)
 
-        possibilities = np.nonzero(self.real_distances[id, :])[0]
-        print(id, possibilities)
+        last_node = path_to_expand[-1]
+
+        possibilities = np.nonzero(
+            self.real_distances[last_node["id"], :])[0]
+
+        current_distance = last_node["current_path_length"]
+        for possibility in possibilities:
+            if self.verify_loop(path_to_expand, possibility):
+                continue
+
+            new_path = path_to_expand.copy()
+
+            distance_last_to_current = current_distance + \
+                self.real_distances[last_node["id"], possibility]
+            heuristics_value = self.heuristics[possibility, self.objective[1]]
+
+            new_path.append(self.create_node(
+                possibility, distance_last_to_current, heuristics_value))
+
+            self.paths.append(new_path)
 
     def run(self):
         path = None
