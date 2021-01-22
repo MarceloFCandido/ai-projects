@@ -9,7 +9,7 @@ def print_usage():
     print("A* usage:\n\npython A* -s <souce-station> -d <destiny-station> --heuristics=<heuristics-file> --real_distances=<distances-file>")
 
 
-def parse(opts):
+def parse_opts(opts):
     objective = [-1, -1]
     heuristics_file = ""
     distances_file = ""
@@ -38,7 +38,9 @@ def parse(opts):
 if __name__ == "__main__":
     opts, args = getopt(sys.argv[1:], "hs:d:", [
                         "heuristics=", "real_distances="])
-    objective, heuristics_file, distances_file = parse(opts)
+    objective, heuristics_filename, distances_filename = parse_opts(opts)
+
+    a_star = A_Star(objective, heuristics_filename, distances_filename)
 
     a_star = A_Star(objective, heuristics_file, distances_file)
     a_star.run()

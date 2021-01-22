@@ -22,9 +22,8 @@ class A_Star(object):
         for path_for_comparison in self.paths:
             if path[-1]["id"] == path_for_comparison[-1]["id"]:
                 continue
-            else:
-                if path[-1]["current_path_length"] + path[-1]["heuristics_value"] > path_for_comparison[-1]["current_path_length"] + path_for_comparison[-1]["heuristics_value"]:
-                    return False
+            elif path[-1]["current_path_length"] + path[-1]["heuristics_value"] > path_for_comparison[-1]["current_path_length"] + path_for_comparison[-1]["heuristics_value"]:
+                return False
         return True
 
     def verify_achieved_objective(self):
