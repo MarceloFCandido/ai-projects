@@ -15,8 +15,7 @@ class A_Star(object):
     def create_node(self, id, current_path_length, heuristics_value):
         return {"id": id,
                 "current_path_length": current_path_length,
-                "heuristics_value": heuristics_value,
-                "visited": False}
+                "heuristics_value": heuristics_value}
 
     def compare_paths(self, path):
         for path_for_comparison in self.paths:
