@@ -29,11 +29,11 @@ class A_Star(object):
     def verify_achieved_objective(self):
         for path in self.paths:
             if path[-1]["id"] == self.objective[1]:
-                if self.compare_paths(path[-1]):
-                    return True
+                if self.compare_paths(path):
+                    return path
                 else:
-                    return False
-        return False
+                    return None
+        return None
 
     def choose_next(self):
         next = 0
@@ -55,5 +55,17 @@ class A_Star(object):
         print(id, possibilities)
 
     def run(self):
-        while not self.verify_achieved_objective():
-            self.expand_chosen(self.choose_next())
+        path = None
+
+        while path == None:
+            chosen = self.choose_next()
+            self.expand_chosen(chosen)
+            path = self.verify_achieved_objective()
+
+        simplified_path = []
+        for id in map(lambda node: node["id"], path):
+            simplified_path.append(id)
+
+        path_length = path[-1]["current_path_length"]
+
+        return simplified_path, path_length

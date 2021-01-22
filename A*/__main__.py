@@ -35,6 +35,16 @@ def parse_opts(opts):
     return tuple(objective), heuristics_file, distances_file
 
 
+def print_result(path, path_length):
+    for i, node in enumerate(path):
+        if i != len(path) - 1:
+            print(f"E{node + 1} ->", end=' ')
+        else:
+            print(f"E{node}")
+
+    print(f"Path length: {path_length}")
+
+
 if __name__ == "__main__":
     opts, args = getopt(sys.argv[1:], "hs:d:", [
                         "heuristics=", "real_distances="])
@@ -42,5 +52,6 @@ if __name__ == "__main__":
 
     a_star = A_Star(objective, heuristics_filename, distances_filename)
 
-    a_star = A_Star(objective, heuristics_file, distances_file)
-    a_star.run()
+    path, path_length = a_star.run()
+
+    print_result(path, path_length)
