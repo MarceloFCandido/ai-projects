@@ -40,7 +40,7 @@ def print_result(path, path_length):
         if i != len(path) - 1:
             print(f"E{node + 1} ->", end=' ')
         else:
-            print(f"E{node}")
+            print(f"E{node + 1}")
 
     print(f"Path length: {path_length}")
 
