@@ -1,9 +1,9 @@
 import numpy as np
 
 
-class Perceptron(object):
+class IrisPerceptron(object):
     def __init__(self) -> None:
-        super().__init__(self)
+        super().__init__()
 
         self.w = None
         self.e = None
