@@ -1,6 +1,5 @@
 import sys
 from getopt import getopt
-import numpy as np
 
 from a_star.a_star import A_Star
 
