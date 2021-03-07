@@ -38,8 +38,6 @@ class IrisPerceptron(object):
 
             epoch = epoch + 1
 
-        print(self.weigths)
-
     def test(self, X, d, activation_func) -> None:
         n_lines, n_features = X.shape
 
