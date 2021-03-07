@@ -43,13 +43,21 @@ if __name__ == "__main__":
 
     def map_classifications(x):
         if x == 'Iris-setosa':
-            return [1, 0, 0]
+            return np.array([1, 0, 0])
         elif x == 'Iris-versicolor':
-            return [0, 1, 0]
+            return np.array([0, 1, 0])
         elif x == 'Iris-virginica':
-            return [0, 0, 1]
+            return np.array([0, 0, 1])
 
-    classifications = [map_classifications(x) for x in np.genfromtxt(
-        data_file, delimiter=',', dtype=str, usecols=(4))]
+    classifications = np.array([map_classifications(x) for x in np.genfromtxt(
+        data_file, delimiter=',', dtype=str, usecols=(4))], dtype=int)
+
+    # shuffling input arrays
+    p = np.random.permutation(data.shape[0])
+    X = data[p]
+    d = classifications[p]
 
     perceptron = IrisPerceptron()
+    perceptron.train(max_iterations, learning_rate, X[:100],
+                     d[:100], lambda x: np.heaviside(x, 1))
+    print(perceptron.test(X[100:], d[100:], lambda x: np.heaviside(x, 1)))
