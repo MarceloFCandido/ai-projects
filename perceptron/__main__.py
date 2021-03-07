@@ -58,6 +58,7 @@ if __name__ == "__main__":
     d = classifications[p]
 
     perceptron = IrisPerceptron()
+    # np.heaviside eh a funcao degrau
     perceptron.train(max_iterations, learning_rate, X[:100],
                      d[:100], lambda x: np.heaviside(x, 1))
     print(perceptron.test(X[100:], d[100:], lambda x: np.heaviside(x, 1)))

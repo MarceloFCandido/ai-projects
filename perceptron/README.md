@@ -8,7 +8,7 @@
 
 Marcelo Lopes de Macedo Ferreira Cândido
 
-Milena Delarete D Marques
+Milena Delarete Drummond Marques
 
 ## Objetivo
 

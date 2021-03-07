@@ -19,8 +19,7 @@ class IrisPerceptron(object):
         err = 1.
 
         while epoch < max_it and err > 0.:
-            print(
-                f'Training(epoch: {epoch} | error: {err} | bias: {self.bias.T})')
+            print(f'Training(epoch: {epoch} | error: {err} | bias: {self.bias.T})')
             err = 0.
 
             for i in range(n_lines):
@@ -50,4 +49,4 @@ class IrisPerceptron(object):
             if np.nonzero(e)[0].size == 0:
                 correct = correct + 1
 
-        return correct, correct * n_lines / 100
+        return correct, (correct / n_lines) * 100
