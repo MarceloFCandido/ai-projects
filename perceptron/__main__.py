@@ -57,8 +57,14 @@ if __name__ == "__main__":
     X = data[p]
     d = classifications[p]
 
+    print("** Função degrau **")
     perceptron = IrisPerceptron()
-    # np.heaviside eh a funcao degrau
-    perceptron.train(max_iterations, learning_rate, X[:100],
-                     d[:100], lambda x: np.heaviside(x, 1))
-    print(perceptron.test(X[100:], d[100:], lambda x: np.heaviside(x, 1)))
+    perceptron.train(max_iterations, learning_rate, X[:100], d[:100], lambda x: np.heaviside(x, 1))
+    result = perceptron.test(X[100:], d[100:], lambda x: np.heaviside(x, 1))
+    print(f" Número de acertos: {result[0]}\n", f"Acurácia: {round(result[1], 2)}%\n")
+
+    print("\n** Função sigmoidal **")
+    perceptron = IrisPerceptron()
+    perceptron.train(max_iterations, learning_rate, X[:100], d[:100], lambda x: 1/(1 + np.exp(-x)), True)
+    result = perceptron.test(X[100:], d[100:], lambda x: 1/(1 + np.exp(-x)), True)
+    print(f" Número de acertos: {result[0]}\n", f"Acurácia: {round(result[1], 2)}%\n")
