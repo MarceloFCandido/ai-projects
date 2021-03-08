@@ -36,6 +36,10 @@ Em que:
 
 O comando imprime no terminal o número de acertos e a acurácia do algoritmo usando a função degrau e a função sigmoidal.
 
+Em seguida, o programa roda os algoritmos variando os parâmetros e plotando um gráfico de comparação da função degrau e da função sigmoidal. Para evitar que essa função rode, basta comentar a linha 150 do arquivo `__main__.py`.
+
+A variação de parâmetro é feita mantendo o número máximo de interações passado no comando e variando o parâmetro `learning-rate` e, em seguida, fazendo o oposto. De forma que é possível ver a influencia de cada parâmetro separadamente na acurácia do modelo.
+
 ## Exemplo
 
 Para determinar o custo para o seguinte caso:
@@ -46,8 +50,9 @@ Para determinar o custo para o seguinte caso:
 
 use o comando:
 ```
-python3 perceptron -l 0.6 -i 300 --data-file ./perceptron/data/iris.csv;
+python3 perceptron -l 0.6 -i 300 --data-file ./perceptron/data/iris.csv
 ```
+
 O resultado a ser impresso na tela será:
 ```
 ** Função degrau **
@@ -65,3 +70,10 @@ Acurácia: 72.0%
 ## Versões do Python recomendadas
 
 Dois computadores foram usados para rodar esse algoritmo e as versão utlizadas foram `3.7.4` e `3.9.1`.
+
+## Análise dos resultados
+
+Como pode ser visto em no gráfico abaixo, gerado ao rodar o programa, a Função Sigmoidal gera modelos com acurácia muito maior que a Função Degrau.
+
+![Grafico](./images/grafico.png)
+
