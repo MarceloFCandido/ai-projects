@@ -1,43 +1,41 @@
 import numpy as np
 import math
 
-class AlgoritmoGenetico(object):
-    def __init__(self, popsize, mutation_rate) -> None:
+
+class GA(object):
+    def __init__(self, pop_size, mutation_rate) -> None:
         super().__init__()
 
-        self.popsize = popsize
+        self.pop_size = pop_size
         self.mutation_rate = mutation_rate
-        
-    def bla(self):
 
-        P = np.zeros((self.popsize, 2))
+    def run(self):
+        P = np.zeros((self.pop_size, 2))
 
-        for i in range(self.popsize):
-            # valor aleatório entre -10 e 10
+        for i in range(self.pop_size):
             P[i] = np.random.rand(1, 2) * 20 - 10
         print(P)
 
-        best_ind = []
+        best_individual = []
         best_fit = None
 
         generation = 0
 
         while True:
-            for ind in P:
-                f = self.fitness(ind)
+            for individual in P:
+                fitness = self.fitness(individual)
 
-                # objetivo do algoritmo eh minimizar
-                print("F\n", self.fitness(ind))
-                if best_fit == None or self.fitness(ind) < best_fit:
-                    best_ind = ind
-                    best_fit = self.fitness(ind)
+                print(f"Fitness: {fitness}")
+                if best_fit == None or fitness < best_fit:
+                    best_individual = individual
+                    best_fit = fitness
 
-            Q = np.zeros((self.popsize, 2))
-            for i in range(math.floor(self.popsize/2)):
+            Q = np.zeros((self.pop_size, 2))
+            for i in range(math.floor(self.pop_size/2)):
                 parent1 = P[2*i]
                 parent2 = P[2*i+1]
 
-                c1, c2 = self.crossover_media(parent1, parent2)
+                c1, c2 = self.average_crossover(parent1, parent2)
 
                 Q[2*i] = self.mutate(c1)
                 Q[2*i+1] = self.mutate(c2)
@@ -45,71 +43,65 @@ class AlgoritmoGenetico(object):
             P = Q
             generation += 1
 
-            print("P: \n", P)
-            print("Best: \n", best_ind, best_fit)
-            print("Geracao: ", generation)
+            print(f"Population: \n{P}", P)
+            print("Generation: ", generation)
+            print("Best: \n", best_individual, best_fit)
 
             # TODO: verificar se esse eh o melhor jeito de parar a funcao
-            if best_fit < -100:
+            if best_fit < -110:
                 break
 
-
-    def fitness(self, ind):
-        x = ind[0]
-        y = ind[1]
+    def fitness(self, individual):
+        x = individual[0]
+        y = individual[1]
 
         aux1 = np.power(1 - np.cos(y), 2)
         aux2 = np.power(1 - np.sin(x), 2)
 
-        f = np.sin(x)*np.exp(aux1) + np.cos(y)*np.exp(aux2) + np.power((x-y), 2)
+        f = np.sin(x) * np.exp(aux1) + np.cos(y) * \
+            np.exp(aux2) + np.power((x-y), 2)
 
         return f
 
-    def crossover_uniforme(self, p1, p2):
-        # crossover uniforme
-        c1 = [p1[0], p2[1]]
-        c2 = [p2[1], p2[0]]
+    def uniform_crossover(self, parent1, parent2):
+        c1 = [parent1[0], parent2[1]]
+        c2 = [parent2[1], parent2[0]]
 
         return c1, c2
 
-    def crossover_media(self, p1, p2):
-        # crossover media
-        c1 = [ (p1[0] + p2[0])/2, (p1[1] + p2[1])/2]
+    def average_crossover(self, parent1, parent2):
+        c1 = [(parent1[0] + parent2[0])/2, (parent1[1] + parent2[1])/2]
 
-        #mantem o melhor pai
-        if self.fitness(p1) <= self.fitness(p2):
-            return c1, p1
+        if self.fitness(parent1) <= self.fitness(parent2):
+            return c1, parent1
         else:
-            return c1, p2
+            return c1, parent2
 
-    def mutate(self, ind):
-
-        new_ind = ind
+    def mutate(self, individual):
+        new_individual = individual
         rand_num = np.random.rand(1)[0]
-        
+
         if self.mutation_rate >= rand_num:
             rand_exp = np.random.randint(7)
             rand_op = np.random.randint(4)
 
-            print("M")
-            print("ind: ", ind)
+            print("Mutating...")
+            print("individual: ", individual)
             print("num: ", rand_num, " exp: ", rand_exp, " op: ", rand_op)
 
             if rand_op == 0:
-                new_ind[0] = ind[0] + np.power(2, rand_exp)
-                new_ind[1] = ind[1] + np.power(2, rand_exp)
+                new_individual[0] = individual[0] + np.power(2, rand_exp)
+                new_individual[1] = individual[1] + np.power(2, rand_exp)
             elif rand_op == 1:
-                new_ind[0] = ind[0] - np.power(2, rand_exp)
-                new_ind[1] = ind[1] + np.power(2, rand_exp)
+                new_individual[0] = individual[0] - np.power(2, rand_exp)
+                new_individual[1] = individual[1] + np.power(2, rand_exp)
             elif rand_op == 2:
-                new_ind[0] = ind[0] + np.power(2, rand_exp)
-                new_ind[1] = ind[1] - np.power(2, rand_exp)
+                new_individual[0] = individual[0] + np.power(2, rand_exp)
+                new_individual[1] = individual[1] - np.power(2, rand_exp)
             else:
-                new_ind[0] = ind[0] - np.power(2, rand_exp)
-                new_ind[1] = ind[1] - np.power(2, rand_exp)
+                new_individual[0] = individual[0] - np.power(2, rand_exp)
+                new_individual[1] = individual[1] - np.power(2, rand_exp)
 
-            print("new_ind: ", new_ind )
+            print("new_ind: ", new_individual)
 
-        return new_ind
-
-
+        return new_individual

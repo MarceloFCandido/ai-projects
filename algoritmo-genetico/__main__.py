@@ -3,10 +3,12 @@ import sys
 from getopt import getopt
 import numpy as np
 
-from algoritmo_genetico.algoritmo_genetico import AlgoritmoGenetico
+from algoritmo_genetico.algoritmo_genetico import GA
+
 
 def print_usage():
     print("AlgoritmoGenetico usage:\n\npython algoritmo-genetico -p <popsize> -m <mutation-rate>")
+
 
 def parse_opts(opts):
     popsize = None
@@ -20,7 +22,7 @@ def parse_opts(opts):
             popsize = int(opts[i][1])
             if popsize % 2 != 0:
                 print("Error!")
-                print("População deve ter tamanho par")
+                print("Population must be even size!")
                 exit()
         elif opts[i][0] == "-m":
             mutation_rate = float(opts[i][1][1:])
@@ -32,10 +34,11 @@ def parse_opts(opts):
 
     return popsize, mutation_rate
 
+
 if __name__ == "__main__":
     opts, args = getopt(sys.argv[1:], "hp:m:", ["m="])
     popsize, mutation_rate = parse_opts(opts)
 
-    algoritmo = AlgoritmoGenetico(popsize, mutation_rate)
+    algoritmo = GA(popsize, mutation_rate)
 
-    algoritmo.bla()
+    algoritmo.run()
