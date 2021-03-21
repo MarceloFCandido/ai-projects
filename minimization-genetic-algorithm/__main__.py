@@ -1,9 +1,8 @@
-from os import device_encoding
 import sys
 from getopt import getopt
 import numpy as np
 
-from algoritmo_genetico.algoritmo_genetico import GA
+from genetic_algorithm.genetic_algorithm import GA
 
 
 def print_usage():

@@ -26,11 +26,11 @@ pip3 install -r "./requirements.txt"
 ```
 
 ### 2. Funcionamento:
-O comando `python3 algoritmo-genetico -h` mostra como usar o pacote, como visto na seguinte saída:
+O comando `python3 minimization-genetic-algorithm -h` mostra como usar o pacote, como visto na seguinte saída:
 ```bash
 Perceptron usage:
 
-python3 algoritmo-genetico -p <pop-size> -m <mutation-rate>
+python3 minimization-genetic-algorithm -p <pop-size> -m <mutation-rate>
 ```
 Em que:
 - `<pop-size>`: tamanho da populacao. Exemplo: `20`
@@ -40,7 +40,7 @@ Em que:
 
 Para determinar o custo para `<pop-size>` = 20 e `<mutation-rate>` = 0.005, use o comando:
 ```bash
-python3 algoritmo-genetico -p 20 -m 0.005
+python3 minimization-genetic-algorithm -p 20 -m 0.005
 ```
 
 O resultado a ser impresso na tela será:
