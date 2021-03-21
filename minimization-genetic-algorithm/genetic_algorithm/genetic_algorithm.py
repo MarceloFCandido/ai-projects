@@ -10,42 +10,42 @@ class GA(object):
         self.mutation_rate = mutation_rate
 
     def run(self):
-        P = np.zeros((self.pop_size, 2))
+        population = np.zeros((self.pop_size, 2))
 
         for i in range(self.pop_size):
-            P[i] = np.random.rand(1, 2) * 20 - 10
+            population[i] = np.random.rand(1, 2) * 20 - 10
 
         best_individual = []
-        best_fit = None
+        best_fitness = None
 
         generation = 0
 
         while True:
-            for individual in P:
+            for individual in population:
                 fitness = self.fitness(individual)
 
-                if best_fit == None or fitness < best_fit:
+                if best_fitness == None or fitness < best_fitness:
                     best_individual = individual
-                    best_fit = fitness
+                    best_fitness = fitness
 
             Q = np.zeros((self.pop_size, 2))
             for i in range(math.floor(self.pop_size/2)):
-                parent1 = P[2*i]
-                parent2 = P[2*i+1]
+                parent1 = population[2*i]
+                parent2 = population[2*i+1]
 
                 c1, c2 = self.average_crossover(parent1, parent2)
 
                 Q[2*i] = self.mutate(c1)
                 Q[2*i+1] = self.mutate(c2)
 
-            P = Q
+            population = Q
 
             print(f"Generation: {generation}")
             print(
-                f"Best individual and fitness: {best_individual}, {best_fit}")
+                f"Best individual and fitness: {best_individual}, {best_fitness}")
 
             # TODO: verificar se esse eh o melhor jeito de parar a funcao
-            if best_fit < -106.764536:
+            if best_fitness < -106.764536:
                 break
 
             generation += 1

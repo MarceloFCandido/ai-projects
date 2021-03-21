@@ -6,7 +6,7 @@ from genetic_algorithm.genetic_algorithm import GA
 
 
 def print_usage():
-    print("AlgoritmoGenetico usage:\n\npython algoritmo-genetico -p <popsize> -m <mutation-rate>")
+    print("minimization-genetic-algorithm usage:\n\npython algoritmo-genetico -p <popsize> -m <mutation-rate>")
 
 
 def parse_opts(opts):
