@@ -14,7 +14,6 @@ class GA(object):
 
         for i in range(self.pop_size):
             P[i] = np.random.rand(1, 2) * 20 - 10
-        print(P)
 
         best_individual = []
         best_fit = None
@@ -25,7 +24,6 @@ class GA(object):
             for individual in P:
                 fitness = self.fitness(individual)
 
-                print(f"Fitness: {fitness}")
                 if best_fit == None or fitness < best_fit:
                     best_individual = individual
                     best_fit = fitness
@@ -41,15 +39,16 @@ class GA(object):
                 Q[2*i+1] = self.mutate(c2)
 
             P = Q
-            generation += 1
 
-            print(f"Population: \n{P}", P)
-            print("Generation: ", generation)
-            print("Best: \n", best_individual, best_fit)
+            print(f"Generation: {generation}")
+            print(
+                f"Best individual and fitness: {best_individual}, {best_fit}")
 
             # TODO: verificar se esse eh o melhor jeito de parar a funcao
-            if best_fit < -110:
+            if best_fit < -106.764536:
                 break
+
+            generation += 1
 
     def fitness(self, individual):
         x = individual[0]
@@ -86,9 +85,6 @@ class GA(object):
             rand_op = np.random.randint(4)
 
             print("Mutating...")
-            print("individual: ", individual)
-            print("num: ", rand_num, " exp: ", rand_exp, " op: ", rand_op)
-
             if rand_op == 0:
                 new_individual[0] = individual[0] + np.power(2, rand_exp)
                 new_individual[1] = individual[1] + np.power(2, rand_exp)
@@ -102,6 +98,6 @@ class GA(object):
                 new_individual[0] = individual[0] - np.power(2, rand_exp)
                 new_individual[1] = individual[1] - np.power(2, rand_exp)
 
-            print("new_ind: ", new_individual)
+            print(f"New individual: {new_individual}")
 
         return new_individual
