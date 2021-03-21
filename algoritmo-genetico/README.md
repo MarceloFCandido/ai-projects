@@ -14,8 +14,8 @@ Milena Delarete Drummond Marques
 
 O objetivo desta atividade é implementar um algoritmo genético para resolver um problema de minimização de função com as seguintes características:
 
-```
-𝑓(𝑥,𝑦) = sin(𝑥)𝑒^((1−cos(𝑦))^2) + 𝑐𝑜𝑠(𝑦)𝑒^((1−sin(𝑥))^2) + (𝑥−𝑦)^2
+```math
+f(x, y) = e^{(1 − \cos{y})^2}\sin{x} + e^{(1 − \sin{x})^2}\cos{y} + (x - y)^2
 ```
 
 ## Execução do algoritmo
@@ -27,26 +27,20 @@ pip3 install -r "./requirements.txt"
 ```
 
 ### 2. Funcionamento:
-O comando `python3 perceptron -h` mostra como usar o pacote, como visto na seguinte saída:
-```
+O comando `python3 algoritmo-genetico -h` mostra como usar o pacote, como visto na seguinte saída:
+```bash
 Perceptron usage:
 
-python algoritmo-genetico -p <popsize> -m <mutation-rate>
+python algoritmo-genetico -p <pop-size> -m <mutation-rate>
 ```
 Em que:
-- `<popsize>`: tamanho da populacao. Exemplo: `20`
+- `<pop-size>`: tamanho da populacao. Exemplo: `20`
 - `<mutation-rate>`: taxa de mutacao. Ideal entre `0.001` e `0.01`
 
 ## Exemplo
 
-Para determinar o custo para o seguinte caso:
-
-`<learning-rate>` = 20
-
-`<max-iterations>` = 0.005
-
-use o comando:
-```
+Para determinar o custo para `<pop-size>` = 20 e `<mutation-rate>` = 0.005, use o comando:
+```bash
 python3 algoritmo-genetico -p 20 -m 0.005
 ```
 
@@ -57,7 +51,7 @@ Best:
 Geracao:  280
 ```
 
-**OBS.:** O resultado pode variar pois, ao executar o programa, a populacao é gerada aleatóriamente aleatóriamente. 
+**OBS.:** O resultado pode variar pois, ao executar o programa, a populacao é gerada aleatoriamente. 
 
 ## Versões do Python recomendadas
 
