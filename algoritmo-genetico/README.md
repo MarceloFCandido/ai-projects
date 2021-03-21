@@ -14,9 +14,7 @@ Milena Delarete Drummond Marques
 
 O objetivo desta atividade é implementar um algoritmo genético para resolver um problema de minimização de função com as seguintes características:
 
-```math
-f(x, y) = e^{(1 − \cos{y})^2}\sin{x} + e^{(1 − \sin{x})^2}\cos{y} + (x - y)^2
-```
+<img src="https://render.githubusercontent.com/render/math?math=f(x%2C%20y)%20%3D%20e%5E%7B(1%20%E2%88%92%20%5Ccos%7By%7D)%5E2%7D%5Csin%7Bx%7D%20%2B%20e%5E%7B(1%20%E2%88%92%20%5Csin%7Bx%7D)%5E2%7D%5Ccos%7By%7D%20%2B%20(x%20-%20y)%5E2">
 
 ## Execução do algoritmo
 
