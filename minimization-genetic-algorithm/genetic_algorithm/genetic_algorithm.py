@@ -13,6 +13,7 @@ class GA(object):
         population = np.zeros((self.pop_size, 2))
 
         for i in range(self.pop_size):
+            # Random number between -10 and 10
             population[i] = np.random.rand(1, 2) * 20 - 10
 
         best_individual = []
@@ -40,15 +41,15 @@ class GA(object):
 
             population = Q
 
-            print(f"Generation: {generation}")
-            print(
-                f"Best individual and fitness: {best_individual}, {best_fitness}")
+            # print(f"Generation: {generation}")
+            # print(f"Best individual and fitness: {best_individual}, {best_fitness}")
 
-            # TODO: verificar se esse eh o melhor jeito de parar a funcao
             if best_fitness < -106.764536:
                 break
 
             generation += 1
+
+        return generation, best_individual, best_fitness
 
     def fitness(self, individual):
         x = individual[0]
@@ -81,10 +82,10 @@ class GA(object):
         rand_num = np.random.rand(1)[0]
 
         if self.mutation_rate >= rand_num:
-            rand_exp = np.random.randint(7)
+            rand_exp = np.random.randint(4)
             rand_op = np.random.randint(4)
 
-            print("Mutating...")
+            # print("Mutating...")
             if rand_op == 0:
                 new_individual[0] = individual[0] + np.power(2, rand_exp)
                 new_individual[1] = individual[1] + np.power(2, rand_exp)
@@ -98,6 +99,6 @@ class GA(object):
                 new_individual[0] = individual[0] - np.power(2, rand_exp)
                 new_individual[1] = individual[1] - np.power(2, rand_exp)
 
-            print(f"New individual: {new_individual}")
+            # print(f"New individual: {new_individual}")
 
         return new_individual

@@ -6,7 +6,7 @@ from genetic_algorithm.genetic_algorithm import GA
 
 
 def print_usage():
-    print("minimization-genetic-algorithm usage:\n\npython genetic-algorithm -p <popsize> -m <mutation-rate>")
+    print("minimization-genetic-algorithm usage:\n\npython minimization-genetic-algorithm -p <popsize> -m <mutation-rate>")
 
 
 def parse_opts(opts):
@@ -40,4 +40,7 @@ if __name__ == "__main__":
 
     algoritmo = GA(popsize, mutation_rate)
 
-    algoritmo.run()
+    generation, best_individual, best_fitness = algoritmo.run()
+
+    print(f"Generation: {generation}")
+    print(f"Best individual and fitness: {best_individual}, {best_fitness}")
