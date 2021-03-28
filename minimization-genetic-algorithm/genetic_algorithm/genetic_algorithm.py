@@ -9,6 +9,7 @@ class GA(object):
         self.pop_size = pop_size
         self.mutation_rate = mutation_rate
 
+
     def run(self):
         population = np.zeros((self.pop_size, 2))
 
@@ -22,6 +23,7 @@ class GA(object):
         generation = 0
 
         while True:
+            # Find best fitness of this generation
             for individual in population:
                 fitness = self.fitness(individual)
 
@@ -29,10 +31,11 @@ class GA(object):
                     best_individual = individual
                     best_fitness = fitness
 
+            # Create the next generation
             Q = np.zeros((self.pop_size, 2))
             for i in range(math.floor(self.pop_size/2)):
-                parent1 = population[2*i]
-                parent2 = population[2*i+1]
+                parent1 = self.selection(population)
+                parent2 = self.selection(population)
 
                 c1, c2 = self.average_crossover(parent1, parent2)
 
@@ -41,8 +44,8 @@ class GA(object):
 
             population = Q
 
-            # print(f"Generation: {generation}")
-            # print(f"Best individual and fitness: {best_individual}, {best_fitness}")
+            print(f"Generation: {generation}")
+            print(f"Best individual and fitness: {best_individual}, {best_fitness}")
 
             if best_fitness < -106.764536:
                 break
@@ -58,10 +61,40 @@ class GA(object):
         aux1 = np.power(1 - np.cos(y), 2)
         aux2 = np.power(1 - np.sin(x), 2)
 
-        f = np.sin(x) * np.exp(aux1) + np.cos(y) * \
-            np.exp(aux2) + np.power((x-y), 2)
+        fitness = np.sin(x) * np.exp(aux1) + np.cos(y) * \
+                  np.exp(aux2) + np.power((x-y), 2)
 
-        return f
+        return fitness
+
+    def proportional_fitness(self, population, i):
+        den = 0
+        for individual in population:
+            den += self.fitness(individual) + 106.764536
+
+        # nom = 1/(1 + self.fitness(population[i]) + 106.764536)
+        nom = self.fitness(population[i]) + 106.764536
+
+        p_fitness = nom/den
+        return p_fitness
+
+    def selection(self, population):
+        index = 0
+
+        p_fitness = self.proportional_fitness(population, index)
+        print(p_fitness)
+
+        total = p_fitness
+        random_num = np.random.rand()
+        print(random_num)
+
+        while total < random_num:
+            index += 1
+            total += self.proportional_fitness(population, index)
+
+        print(index)
+        print('\n')
+
+        return population[index]
 
     def uniform_crossover(self, parent1, parent2):
         c1 = [parent1[0], parent2[1]]
