@@ -120,7 +120,7 @@ class GA(object):
         plt.ylabel('y')
           
         # giving a title to my graph
-        plt.title(f'Inididuals from generation {generation}')
+        plt.title(f'Inividuals from generation {generation}')
           
         # function to show the plot
         plt.show()

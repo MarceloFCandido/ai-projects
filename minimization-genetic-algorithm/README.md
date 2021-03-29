@@ -69,7 +69,7 @@ Best individual and fitness: [-1.58214947 -3.13022245], -106.76453666013647
 
 ![Geração 250](./images/generation250.png)
 
-![Geração 267](./images/generatio267.png)
+![Geração 267](./images/generation267.png)
 
 ## Informações
 | Dado                 | Valor                                                              |
