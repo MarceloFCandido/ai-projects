@@ -43,11 +43,33 @@ python3 minimization-genetic-algorithm -p 20 -m 0.005
 
 O resultado a ser impresso na tela será:
 ```
-Generation: 127
-Best individual and fitness: [-1.58209201 -3.13019665], -106.76453606289431
+Generation: 0
+Generation: 50
+Generation: 100
+Generation: 150
+Generation: 200
+Generation: 250
+Generation: 267
+Best individual and fitness: [-1.58214947 -3.13022245], -106.76453666013647
 ```
 
 **OBS.:** O resultado pode variar pois, ao executar o programa, a populacao inicial é gerada aleatoriamente. 
+
+## Gráficos obtidos no exemplo acima:
+
+![Geração 0](./images/generation0.png)
+
+![Geração 50](./images/generation50.png)
+
+![Geração 100](./images/generation100.png)
+
+![Geração 150](./images/generation150.png)
+
+![Geração 200](./images/generation200.png)
+
+![Geração 250](./images/generation250.png)
+
+![Geração 267](./images/generatio267.png)
 
 ## Informações
 | Dado                 | Valor                                                              |
@@ -65,6 +87,9 @@ Best individual and fitness: [-1.58209201 -3.13019665], -106.76453606289431
 
 ## Indivíduos
 Os indivíduos do algoritmo genético foram modelados por arrays da biblioteca numpy com dimensão 1x2, de forma que a primeira posição do array corresponde ao valor 𝑥 e a segunda ao valor de 𝑦.
+
+## Função de Seleção
+A função de seleção escolhida foi uma função randomica.
 
 ## Função Crossover
 Duas funções de crossover foram testadas: crossover uniforme e crossover de média.
