@@ -35,7 +35,7 @@ class GA(object):
                 print(f"Generation: {generation}")
                 # print(
                 #     f"Best individual and fitness: {best_individual}, {best_fitness}")
-                self.plot_graph(generation, population)
+                # self.plot_graph(generation, population)
 
             if best_fitness < -106.764536:
                 break
@@ -54,7 +54,7 @@ class GA(object):
             population = Q
             generation += 1
 
-        self.plot_graph(generation, population)
+        # self.plot_graph(generation, population)
         return generation, best_individual, best_fitness
 
     def fitness(self, individual):

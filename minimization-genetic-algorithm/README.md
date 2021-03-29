@@ -38,7 +38,7 @@ Em que:
 
 Para determinar o custo para `<pop-size>` = 20 e `<mutation-rate>` = 0.005, use o comando:
 ```bash
-python3 minimization-genetic-algorithm -p 20 -m 0.005
+python3 minimization-genetic-algorithm -p 50 -m 0.005
 ```
 
 O resultado a ser impresso na tela será:
@@ -80,7 +80,7 @@ Best individual and fitness: [-1.58214947 -3.13022245], -106.76453666013647
 | Função objetivo      |                          minimizar 𝑓(𝑥,𝑦)                          |
 | Função de Fitness    | 𝑓(𝑥,𝑦) = sin(𝑥)e^((1−cos(𝑦))^2) + cos(𝑦)e^((1−sin(𝑥))^2) + (𝑥−𝑦)^2 |
 | Número de Gerações   |                                 127                                |
-| Taxa de Crossover    |                                                                    |
+| Taxa de Crossover    |                              1                                      |
 | Taxa de Mutação      |                                0.005                               |
 
 \* Função crossover explicada em um item abaixo
@@ -109,7 +109,7 @@ As opções de operação são:
 - 2: ocorre soma da potência de 2 tanto no valor de 𝑥 e subtração no valor de 𝑦.
 - 3: ocorre subtração da potência de 2 tanto no valor de 𝑥 quanto no valor de 𝑦.
 
-### Versões do Python recomendadas
+## Versões do Python recomendadas
 
 Dois computadores foram usados para rodar esse algoritmo e as versão utlizadas foram `3.7.4` e `3.9.1`.
 
