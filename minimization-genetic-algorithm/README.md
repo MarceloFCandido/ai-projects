@@ -38,16 +38,38 @@ Em que:
 
 Para determinar o custo para `<pop-size>` = 20 e `<mutation-rate>` = 0.005, use o comando:
 ```bash
-python3 minimization-genetic-algorithm -p 20 -m 0.005
+python3 minimization-genetic-algorithm -p 50 -m 0.005
 ```
 
 O resultado a ser impresso na tela será:
 ```
-Generation: 127
-Best individual and fitness: [-1.58209201 -3.13019665], -106.76453606289431
+Generation: 0
+Generation: 50
+Generation: 100
+Generation: 150
+Generation: 200
+Generation: 250
+Generation: 267
+Best individual and fitness: [-1.58214947 -3.13022245], -106.76453666013647
 ```
 
 **OBS.:** O resultado pode variar pois, ao executar o programa, a populacao inicial é gerada aleatoriamente. 
+
+## Gráficos obtidos no exemplo acima:
+
+![Geração 0](./images/generation0.png)
+
+![Geração 50](./images/generation50.png)
+
+![Geração 100](./images/generation100.png)
+
+![Geração 150](./images/generation150.png)
+
+![Geração 200](./images/generation200.png)
+
+![Geração 250](./images/generation250.png)
+
+![Geração 267](./images/generation267.png)
 
 ## Informações
 | Dado                 | Valor                                                              |
@@ -58,13 +80,16 @@ Best individual and fitness: [-1.58209201 -3.13019665], -106.76453606289431
 | Função objetivo      |                          minimizar 𝑓(𝑥,𝑦)                          |
 | Função de Fitness    | 𝑓(𝑥,𝑦) = sin(𝑥)e^((1−cos(𝑦))^2) + cos(𝑦)e^((1−sin(𝑥))^2) + (𝑥−𝑦)^2 |
 | Número de Gerações   |                                 127                                |
-| Taxa de Crossover    |                                                                    |
+| Taxa de Crossover    |                              1                                      |
 | Taxa de Mutação      |                                0.005                               |
 
 \* Função crossover explicada em um item abaixo
 
 ## Indivíduos
 Os indivíduos do algoritmo genético foram modelados por arrays da biblioteca numpy com dimensão 1x2, de forma que a primeira posição do array corresponde ao valor 𝑥 e a segunda ao valor de 𝑦.
+
+## Função de Seleção
+A função de seleção escolhida foi uma função randomica.
 
 ## Função Crossover
 Duas funções de crossover foram testadas: crossover uniforme e crossover de média.
@@ -84,7 +109,7 @@ As opções de operação são:
 - 2: ocorre soma da potência de 2 tanto no valor de 𝑥 e subtração no valor de 𝑦.
 - 3: ocorre subtração da potência de 2 tanto no valor de 𝑥 quanto no valor de 𝑦.
 
-### Versões do Python recomendadas
+## Versões do Python recomendadas
 
 Dois computadores foram usados para rodar esse algoritmo e as versão utlizadas foram `3.7.4` e `3.9.1`.
 
